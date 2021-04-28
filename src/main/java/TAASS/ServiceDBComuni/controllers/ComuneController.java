@@ -13,6 +13,14 @@ public class ComuneController {
     @Autowired
     private ComuneRepository comuneRepository;
 
+    @PostMapping
+    public Comune addComune(@RequestBody Comune comune){
+        //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+        System.out.println("# Aggiungi comune");
+        System.out.println("#\tddComune: comune: " + comune.getId().toString() + " = " + comune.getNome());
+        return comuneRepository.save(new Comune(comune.getId(),comune.getNome(), comune.getCAP(), comune.getProvincia()));
+    }
+
     @GetMapping("/info-comune")
     public Optional<Comune> getComuneById(@PathVariable long comuneID){
         return comuneRepository.findById(comuneID);
