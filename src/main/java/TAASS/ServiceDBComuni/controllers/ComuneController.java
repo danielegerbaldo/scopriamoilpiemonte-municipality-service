@@ -15,29 +15,14 @@ public class ComuneController {
 
     @PostMapping
     public Comune addComune(@RequestBody Comune comune){
-        //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
         System.out.println("# Aggiungi comune");
         System.out.println("#\tddComune: comune: " + comune.getId().toString() + " = " + comune.getNome());
         return comuneRepository.save(new Comune(comune.getId(),comune.getNome(), comune.getCAP(), comune.getProvincia()));
     }
 
     @GetMapping("/info-comune")
-    public Optional<Comune> getComuneById(@PathVariable long comuneID){
-        return comuneRepository.findById(comuneID);
+    public Optional<Comune> getComuneById(@RequestParam long id){
+        return comuneRepository.findById(id);
     }
 
-    @GetMapping("/genera-indirizzo-via-id")
-    public String getIndirizzoGenerato(@RequestBody String via, @RequestBody long comuneID){
-        Optional<Comune> comune = getComuneById(comuneID);
-        if(comune.isPresent()){
-            return comune.get().generaIndirizzo(via);
-        }else{
-            return "Non esiste il comune richiesto";
-        }
-    }
-
-    @GetMapping("/genera-indirizzo-via-comune")
-    public String getIndirizzoGenerato(@RequestBody String via, @RequestBody Comune comune){
-        return comune.generaIndirizzo(via);
-    }
 }

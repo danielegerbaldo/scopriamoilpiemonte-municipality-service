@@ -18,10 +18,6 @@ public class Comune {
         this.provincia = provincia;
     }
 
-    public String generaIndirizzo(String via){
-        return "" + via + "; " + this.nome + "(" + this.provincia + ")" + ", " + this.CAP;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
