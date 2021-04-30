@@ -6,21 +6,20 @@ import javax.persistence.*;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "comune")
+@Table(name = "comuni")
 public class Comune {
     public Comune() {
     }
 
-    public Comune(Long id, String nome, String CAP, String provincia) {
-        this.id = id;
+    public Comune(Long istat, String nome, String CAP, String provincia) {
+        this.istat = istat;
         this.nome = nome;
         this.CAP = CAP;
         this.provincia = provincia;
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long istat;
 
     @Column(name="nome")
     private String nome;
@@ -31,12 +30,12 @@ public class Comune {
     @Column(name = "provincia")
     private String provincia;
 
-    public Long getId() {
-        return id;
+    public Long getIstat() {
+        return istat;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIstat(Long id) {
+        this.istat = istat;
     }
 
     public String getNome() {

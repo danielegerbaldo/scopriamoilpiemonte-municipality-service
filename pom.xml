@@ -63,6 +63,10 @@
 				<configuration>
 					<fork>true</fork>
 					<mainClass>${start-class}</mainClass>
+					<layers>
+						<enabled>true</enabled>
+						<includeLayerTools>true</includeLayerTools>
+					</layers>
 				</configuration>
 				<executions>
 					<execution>
