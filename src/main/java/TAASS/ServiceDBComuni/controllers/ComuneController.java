@@ -22,9 +22,9 @@ public class ComuneController {
         return comuneRepository.save(new Comune(comune.getIstat(),comune.getNome(), comune.getCAP(), comune.getProvincia()));
     }
 
-    @GetMapping("/info-comune")
-    public Optional<Comune> getComuneById(@RequestParam long id){
-        return comuneRepository.findById(id);
+    @GetMapping("/info-comune/{id}")
+    public Comune getComuneById(@PathVariable long id){
+        return comuneRepository.findByIstat(id);
     }
 
     @PostMapping("/inserisci-comuni")
