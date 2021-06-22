@@ -1,5 +1,6 @@
 package TAASS.ServiceDBComuni.controllers;
 
+import TAASS.ServiceDBComuni.exceptions.ComuneNotFoundException;
 import TAASS.ServiceDBComuni.models.CAPImportato;
 import TAASS.ServiceDBComuni.models.Comune;
 import TAASS.ServiceDBComuni.models.ComuneImportato;
@@ -31,7 +32,13 @@ public class ComuneController {
 
     @GetMapping("/info-comune/{id}")
     public Comune getComuneById(@PathVariable long id){
-        return comuneRepository.findByIstat(id);
+
+        Comune comune = comuneRepository.findByIstat(id);
+
+        if(comune!=null)
+            return comune;
+        else
+            throw new ComuneNotFoundException();
     }
 
     @PostMapping("/inserisci-comuni")
