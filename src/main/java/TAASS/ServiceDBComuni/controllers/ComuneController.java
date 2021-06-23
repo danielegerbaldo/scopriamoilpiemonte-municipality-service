@@ -7,6 +7,8 @@ import TAASS.ServiceDBComuni.models.ComuneImportato;
 import TAASS.ServiceDBComuni.models.GeoImportato;
 import TAASS.ServiceDBComuni.repositories.ComuneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,22 +25,6 @@ public class ComuneController {
         System.out.println("# Aggiungi comune");
         System.out.println("#\tComune: comune: " + comune.getIstat().toString() + " = " + comune.getNome());
         return comuneRepository.save(new Comune(comune.getIstat(),comune.getNome(), comune.getCAP(), comune.getRegione(), comune.getProvincia()));
-    }
-
-    @GetMapping("/info-comune/")
-    public List<Comune> getAllComuni(){
-        return comuneRepository.findAll();
-    }
-
-    @GetMapping("/info-comune/{id}")
-    public Comune getComuneById(@PathVariable long id){
-
-        Comune comune = comuneRepository.findByIstat(id);
-
-        if(comune!=null)
-            return comune;
-        else
-            throw new ComuneNotFoundException();
     }
 
     @PostMapping("/inserisci-comuni")
@@ -84,4 +70,26 @@ public class ComuneController {
         }
 
     }
+
+    @GetMapping("/info-comune/")
+    public ResponseEntity<List<Comune>> getAllComuni(){
+        List<Comune> comune = comuneRepository.findAll();
+
+        if(comune.isEmpty())
+            return new ResponseEntity<List<Comune>>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<List<Comune>>(comune, HttpStatus.OK);
+    }
+
+    @GetMapping("/info-comune/{id}")
+    public ResponseEntity<Comune> getComuneById(@PathVariable long id){
+
+        Comune comune = comuneRepository.findByIstat(id);
+
+        if(comune!=null)
+            return new ResponseEntity<Comune>(comune, HttpStatus.OK);
+        else
+            return new ResponseEntity<Comune>(HttpStatus.NOT_FOUND);
+    }
+
 }
