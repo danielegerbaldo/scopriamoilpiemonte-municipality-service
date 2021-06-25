@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,6 +91,22 @@ public class ComuneController {
             return new ResponseEntity<Comune>(comune, HttpStatus.OK);
         else
             return new ResponseEntity<Comune>(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("/info-comune/getComuniByIdList")
+    public ResponseEntity<List<Comune>> getComuniByIdList(@RequestBody List<Long> ids){
+        List<Comune> comuni = new ArrayList<>();
+
+        for (Long id :
+                ids) {
+            if(comuneRepository.findById(id).isPresent())
+                comuni.add(comuneRepository.findById(id).get());
+        }
+
+        if(comuni.isEmpty())
+            return new ResponseEntity<List<Comune>>(HttpStatus.NOT_FOUND);
+        else
+            return new ResponseEntity<List<Comune>>(comuni, HttpStatus.OK);
     }
 
 }
