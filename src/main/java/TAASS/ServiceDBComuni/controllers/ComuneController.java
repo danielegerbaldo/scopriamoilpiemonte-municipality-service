@@ -93,6 +93,17 @@ public class ComuneController {
             return new ResponseEntity<Comune>(HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/info-comune/getByName/{name}")
+    public ResponseEntity<Comune> getComuneByName(@PathVariable String name){
+
+        Comune comune = comuneRepository.findByNome(name);
+
+        if(comune!=null)
+            return new ResponseEntity<Comune>(comune, HttpStatus.OK);
+        else
+            return new ResponseEntity<Comune>(HttpStatus.NOT_FOUND);
+    }
+
     @PostMapping("/info-comune/getComuniByIdList")
     public ResponseEntity<List<Comune>> getComuniByIdList(@RequestBody List<Long> ids){
         List<Comune> comuni = new ArrayList<>();
