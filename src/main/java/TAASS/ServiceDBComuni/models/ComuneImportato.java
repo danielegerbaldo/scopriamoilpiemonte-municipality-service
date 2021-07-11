@@ -11,7 +11,6 @@ public class ComuneImportato {
     public ComuneImportato(String istat, String comune, String regione, String provincia, String indirizzo){
         this.istat = istat;
         this.comune = comune;
-
         this.regione = regione;
         this.provincia = provincia;
         this.indirizzo = indirizzo;

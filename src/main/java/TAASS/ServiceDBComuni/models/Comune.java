@@ -11,10 +11,11 @@ public class Comune {
     public Comune() {
     }
 
-    public Comune(Long istat, String nome, String CAP, String provincia) {
+    public Comune(Long istat, String nome, String CAP, String regione, String provincia) {
         this.istat = istat;
         this.nome = nome;
         this.CAP = CAP;
+        this.regione = regione;
         this.provincia = provincia;
     }
 
@@ -27,8 +28,17 @@ public class Comune {
     @Column(name="CAP")
     private String CAP;
 
+    @Column(name = "regione")
+    private String regione;
+
     @Column(name = "provincia")
     private String provincia;
+
+    @Column(name = "lat")
+    private Double lat;
+
+    @Column(name = "lng")
+    private Double lng;
 
     public Long getIstat() {
         return istat;
@@ -60,5 +70,29 @@ public class Comune {
 
     public void setProvincia(String provincia) {
         this.provincia = provincia;
+    }
+
+    public String getRegione() {
+        return regione;
+    }
+
+    public void setRegione(String regione) {
+        this.regione = regione;
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getLng() {
+        return lng;
+    }
+
+    public void setLng(Double lng) {
+        this.lng = lng;
     }
 }
