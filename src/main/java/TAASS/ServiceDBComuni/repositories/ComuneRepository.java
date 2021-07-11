@@ -10,4 +10,5 @@ import java.util.List;
 public interface ComuneRepository extends JpaRepository<Comune, Long> {
 
     Comune findByIstat(long istat);
+    Comune findByNome(String nome);
 }
