@@ -11,9 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/v1/comune")
@@ -74,7 +72,7 @@ public class ComuneController {
 
     @GetMapping("/info-comune/")
     public ResponseEntity<List<Comune>> getAllComuni(){
-        List<Comune> comune = comuneRepository.findAll();
+        List<Comune> comune = comuneRepository.findAllByOrderByNomeAsc();
 
         if(comune.isEmpty())
             return new ResponseEntity<List<Comune>>(HttpStatus.NOT_FOUND);
