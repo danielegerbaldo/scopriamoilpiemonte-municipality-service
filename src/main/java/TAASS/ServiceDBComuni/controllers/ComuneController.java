@@ -72,7 +72,7 @@ public class ComuneController {
 
     @GetMapping("/info-comune/")
     public ResponseEntity<List<Comune>> getAllComuni(){
-        List<Comune> comune = comuneRepository.findAllByRegioneAndOrderByNomeAsc("Piemonte");
+        List<Comune> comune = comuneRepository.findAllByRegioneOrderByNomeAsc("Piemonte");
 
         if(comune.isEmpty())
             return new ResponseEntity<List<Comune>>(HttpStatus.NOT_FOUND);

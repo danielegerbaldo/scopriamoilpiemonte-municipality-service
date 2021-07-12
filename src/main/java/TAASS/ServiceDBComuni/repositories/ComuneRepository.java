@@ -12,5 +12,5 @@ public interface ComuneRepository extends JpaRepository<Comune, Long> {
     Comune findByIstat(long istat);
     Comune findByNome(String nome);
     List<Comune> findAllByOrderByNomeAsc();
-    List<Comune> findAllByRegioneAndOrderByNomeAsc(String regione);
+    List<Comune> findAllByRegioneOrderByNomeAsc(String regione);
 }
