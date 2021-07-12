@@ -33,7 +33,7 @@ public class ComuneController {
             System.out.println("# Aggiungo comune");
             System.out.println("#\tComune: comune: " + comuneImportato.getIstat() + " = " + comuneImportato.getComune());
 
-            comuneRepository.save(new Comune(Long.parseLong(comuneImportato.getIstat()),comuneImportato.getComune(), "", "", comuneImportato.getProvincia()));
+            comuneRepository.save(new Comune(Long.parseLong(comuneImportato.getIstat()),comuneImportato.getComune(), "", comuneImportato.getRegione(), comuneImportato.getProvincia()));
         }
 
     }
